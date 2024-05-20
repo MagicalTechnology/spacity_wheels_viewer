@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reels_viewer/reels_viewer.dart';
-import 'package:reels_viewer/src/components/user_profile_image.dart';
+import 'package:spacity_wheels_viewer/spacity_wheels_viewer.dart';
+import 'package:spacity_wheels_viewer/src/components/user_profile_image.dart';
 
 import '../utils/date_formatter.dart';
 

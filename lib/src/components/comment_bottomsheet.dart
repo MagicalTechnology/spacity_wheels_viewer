@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reels_viewer/reels_viewer.dart';
-import 'package:reels_viewer/src/components/comment_item.dart';
+import 'package:spacity_wheels_viewer/spacity_wheels_viewer.dart';
+import 'package:spacity_wheels_viewer/src/components/comment_item.dart';
 
 class CommentBottomSheet extends StatefulWidget {
   final List<ReelCommentModel> commentList;

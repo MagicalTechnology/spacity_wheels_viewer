@@ -1,7 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:reels_viewer/src/models/reel_model.dart';
-import 'package:reels_viewer/src/reels_page.dart';
+import 'package:spacity_wheels_viewer/src/models/reel_model.dart';
+import 'package:spacity_wheels_viewer/src/reels_page.dart';
 
 class ReelsViewer extends StatefulWidget {
   /// use reel model and provide list of reels, list contains reels object, object contains url and other parameters
@@ -98,21 +98,13 @@ class _ReelsViewerState extends State<ReelsViewer> {
             ),
             if (widget.showAppbar)
               Container(
-                color: Colors.black26,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                         onPressed: widget.onClickBackArrow ??
                             () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back,color: Colors.white,)),
-                    Text(
-                      widget.appbarTitle ?? 'Reels View',
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white
-                      ),
+                        icon: const Icon(Icons.arrow_back,color: Colors.white,)
                     ),
                     const SizedBox(),
                   ],

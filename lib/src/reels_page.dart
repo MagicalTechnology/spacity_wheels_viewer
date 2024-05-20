@@ -1,8 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:reels_viewer/src/models/reel_model.dart';
-import 'package:reels_viewer/src/utils/url_checker.dart';
+import 'package:spacity_wheels_viewer/src/models/reel_model.dart';
+import 'package:spacity_wheels_viewer/src/utils/url_checker.dart';
 import 'package:video_player/video_player.dart';
 import 'components/like_icon.dart';
 import 'components/screen_options.dart';

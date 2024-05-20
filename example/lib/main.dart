@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:reels_viewer/reels_viewer.dart';
+import 'package:spacity_wheels_viewer/spacity_wheels_viewer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Reels Viewer Demo',
+      title: 'Spacity Wheels',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ReelsViewer(
       reelsList: reelsList,
-      appbarTitle: 'Instagram Reels',
+      appbarTitle: 'Spacity Wheels',
       onShare: (url) {
         log('Shared reel url ==> $url');
       },

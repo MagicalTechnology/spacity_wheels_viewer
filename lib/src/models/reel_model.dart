@@ -1,4 +1,4 @@
-import 'package:reels_viewer/reels_viewer.dart';
+import 'package:spacity_wheels_viewer/spacity_wheels_viewer.dart';
 
 class ReelModel {
   final String? id;
