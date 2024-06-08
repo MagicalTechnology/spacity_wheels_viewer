@@ -5,7 +5,7 @@ import 'package:spacity_wheels_viewer/src/utils/convert_numbers_to_short.dart';
 
 import 'comment_bottomsheet.dart';
 
-class ScreenOptions extends StatelessWidget {
+class ScreenOptions extends StatefulWidget {
   final ReelModel item;
   final bool showVerifiedTick;
   final Function(String)? onShare;
@@ -24,6 +24,35 @@ class ScreenOptions extends StatelessWidget {
     this.onLike,
     this.onShare,
   }) : super(key: key);
+
+  @override
+  _ScreenOptionsState createState() => _ScreenOptionsState();
+}
+
+class _ScreenOptionsState extends State<ScreenOptions> {
+
+  @override
+  void initState() {
+    super.initState(); // Assuming ReelModel has isFollowed field
+  }
+
+  void toggleLike() {
+    setState(() {
+      widget.item.isLiked = !widget.item.isLiked;
+      if (widget.onLike != null) {
+        widget.onLike!(widget.item.url);
+      }
+    });
+  }
+
+  void toggleFollow() {
+    setState(() {
+      widget.item.isFollowed = !widget.item.isFollowed;
+      if (widget.onFollow != null) {
+        widget.onFollow!();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,30 +75,30 @@ class ScreenOptions extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        if (item.profileUrl != null)
-                          UserProfileImage(profileUrl: item.profileUrl??''),
-                        if (item.profileUrl == null)
+                        if (widget.item.profileUrl != null)
+                          UserProfileImage(profileUrl: widget.item.profileUrl??''),
+                        if (widget.item.profileUrl == null)
                           const CircleAvatar(
                             child: Icon(Icons.person, size: 18),
                             radius: 16,
                           ),
                         const SizedBox(width: 6),
-                        Text(item.userName,
+                        Text(widget.item.userName,
                             style: const TextStyle(color: Colors.white)),
                         const SizedBox(width: 10),
-                        if (showVerifiedTick)
+                        if (widget.showVerifiedTick)
                           const Icon(
                             Icons.verified,
                             size: 15,
                             color: Colors.white,
                           ),
-                        if (showVerifiedTick) const SizedBox(width: 6),
-                        if (onFollow != null)
+                        if (widget.showVerifiedTick) const SizedBox(width: 6),
+                        if (widget.onFollow != null)
                           TextButton(
-                            onPressed: onFollow,
-                            child: const Text(
-                              'Follow',
-                              style: TextStyle(
+                            onPressed: toggleFollow,
+                            child: Text(
+                              widget.item.isFollowed ? 'Unfollow' : 'Follow',
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
@@ -77,11 +106,11 @@ class ScreenOptions extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(width: 6),
-                    if (item.reelDescription != null)
-                      Text(item.reelDescription ?? '',
+                    if (widget.item.reelDescription != null)
+                      Text(widget.item.reelDescription ?? '',
                           style: const TextStyle(color: Colors.white)),
                     const SizedBox(height: 10),
-                    if (item.musicName != null)
+                    if (widget.item.musicName != null)
                       Row(
                         children: [
                           const Icon(
@@ -90,7 +119,7 @@ class ScreenOptions extends StatelessWidget {
                             color: Colors.white,
                           ),
                           Text(
-                            'Original Audio - ${item.musicName}',
+                            'Original Audio - ${widget.item.musicName}',
                             style: const TextStyle(color: Colors.white),
                           ),
                         ],
@@ -100,33 +129,33 @@ class ScreenOptions extends StatelessWidget {
               ),
               Column(
                 children: [
-                  if (onLike != null && !item.isLiked)
-                    IconButton(
-                      icon: const Icon(Icons.favorite_outline,
-                          color: Colors.white),
-                      onPressed: () => onLike!(item.url),
+                  IconButton(
+                    icon: Icon(
+                      widget.item.isLiked ? Icons.favorite : Icons.favorite_outline,
+                      color: widget.item.isLiked ? Colors.red : Colors.white,
                     ),
-                  if (item.isLiked)
-                    const Icon(Icons.favorite_rounded, color: Colors.red),
-                  Text(NumbersToShort.convertNumToShort(item.likeCount),
+                    onPressed: toggleLike,
+                  ),
+                  Text(NumbersToShort.convertNumToShort(widget.item.likeCount),
                       style: const TextStyle(color: Colors.white)),
                   const SizedBox(height: 20),
                   IconButton(
-                    icon:
-                        const Icon(Icons.comment_rounded, color: Colors.white),
+                    icon: const Icon(Icons.comment_rounded, color: Colors.white),
                     onPressed: () {
-                  if(onComment!=null)  {  showModalBottomSheet(
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (ctx) => CommentBottomSheet(commentList: item.commentList??[],onComment: onComment)
-                      );}
+                      if (widget.onComment != null) {
+                        showModalBottomSheet(
+                          barrierColor: Colors.transparent,
+                          context: context,
+                          builder: (ctx) => CommentBottomSheet(commentList: widget.item.commentList ?? [], onComment: widget.onComment)
+                        );
+                      }
                     },
                   ),
-                  Text(NumbersToShort.convertNumToShort(item.commentList?.length??0), style: const TextStyle(color: Colors.white)),
+                  Text(NumbersToShort.convertNumToShort(widget.item.commentList?.length ?? 0), style: const TextStyle(color: Colors.white)),
                   const SizedBox(height: 20),
-                  if (onShare != null)
+                  if (widget.onShare != null)
                     InkWell(
-                      onTap: () => onShare!(item.url),
+                      onTap: () => widget.onShare!(widget.item.url),
                       child: Transform(
                         transform: Matrix4.rotationZ(5.8),
                         child: const Icon(
@@ -136,10 +165,10 @@ class ScreenOptions extends StatelessWidget {
                       ),
                     ),
                   const SizedBox(height: 20),
-                  if (onClickMoreBtn != null)
+                  if (widget.onClickMoreBtn != null)
                     IconButton(
                       icon: const Icon(Icons.more_vert),
-                      onPressed: onClickMoreBtn!,
+                      onPressed: widget.onClickMoreBtn!,
                       color: Colors.white,
                     ),
                 ],

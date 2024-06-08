@@ -35,8 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ReelModel(
         'https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4',
         'Darshan Patil',
+        true,
+        true,
         likeCount: 2000,
-        isLiked: true,
         musicName: 'In the name of Love',
         reelDescription: "Life is better when you're laughing.",
         profileUrl:
@@ -67,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ReelModel(
       'https://assets.mixkit.co/videos/preview/mixkit-father-and-his-little-daughter-eating-marshmallows-in-nature-39765-large.mp4',
       'Rahul',
+      true,
+      true,
       musicName: 'In the name of Love',
       reelDescription: "Life is better when you're laughing.",
       profileUrl:
@@ -75,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ReelModel(
       'https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4',
       'Rahul',
+      true,
+      true,
     ),
   ];
 

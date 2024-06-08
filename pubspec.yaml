@@ -1,7 +1,7 @@
 name: spacity_wheels_viewer
 description: This is a package created in the style of the spacity wheels viewer, with which you can pass video url and get spacity wheels view.
-version: 1.0.0+3
-homepage: https://github.com/patildarshan66/reels_viewer
+version: 1.0.1
+homepage: https://spacity.com
 
 environment:
   sdk: ">=3.0.0 <3.15.0"
