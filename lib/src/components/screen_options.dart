@@ -97,7 +97,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                           TextButton(
                             onPressed: toggleFollow,
                             child: Text(
-                              widget.item.isFollowed ? 'Unfollow' : 'Follow',
+                              widget.item.showFollowButton!=null&&widget.item.showFollowButton!?(widget.item.isFollowed ? 'Unfollow' : 'Follow'):'',
                               style: const TextStyle(
                                 color: Colors.white,
                               ),

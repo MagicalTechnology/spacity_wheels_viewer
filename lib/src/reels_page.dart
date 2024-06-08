@@ -80,6 +80,9 @@ class _ReelsPageState extends State<ReelsPage> {
   }
 
   Widget getVideoView() {
+    if(widget.item.s==null){
+      return Stack();
+    }
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -97,7 +100,7 @@ class _ReelsPageState extends State<ReelsPage> {
                         if (widget.onLike != null) {
                           widget.item.isLiked!=widget.item.isLiked;
                           widget.onLike!(widget.item.url);
-                          
+
                         }
                         setState(() {});
                       }
@@ -113,7 +116,6 @@ class _ReelsPageState extends State<ReelsPage> {
                 children: const [
                   CircularProgressIndicator(),
                   SizedBox(height: 10),
-                  Text('Loading...')
                 ],
               ),
         if (_liked)
