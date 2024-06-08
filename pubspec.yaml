@@ -1,6 +1,6 @@
 name: spacity_wheels_viewer
 description: This is a package created in the style of the spacity wheels viewer, with which you can pass video url and get spacity wheels view.
-version: 1.0.1
+version: 1.0.2
 homepage: https://spacity.com
 
 environment:
