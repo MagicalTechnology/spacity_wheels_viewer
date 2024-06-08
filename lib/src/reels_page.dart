@@ -95,7 +95,9 @@ class _ReelsPageState extends State<ReelsPage> {
                       if (!widget.item.isLiked) {
                         _liked = true;
                         if (widget.onLike != null) {
+                          widget.item.isLiked!=widget.item.isLiked;
                           widget.onLike!(widget.item.url);
+                          
                         }
                         setState(() {});
                       }
