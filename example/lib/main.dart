@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
       true,
       true,
-      showFollowButton: false,
+      showFollowButton: true,
     ),
   ];
 
@@ -96,16 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
       onShare: (url) {
         log('Shared reel url ==> $url');
       },
-      onLike: (url) {
+      onLike: (liked, url) {
         log('Liked reel url ==> $url');
       },
-      onFollow: () {
+      onFollow: (followed, url) {
         log('======> Clicked on follow <======');
       },
-      onComment: (comment) {
+      onComment: (comment, id) {
         log('Comment on reel ==> $comment');
       },
-      onClickMoreBtn: () {
+      onClickMoreBtn: (id) {
         log('======> Clicked on more option <======');
       },
       onClickBackArrow: () {

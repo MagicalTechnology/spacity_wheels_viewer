@@ -9,10 +9,10 @@ class ScreenOptions extends StatefulWidget {
   final ReelModel item;
   final bool showVerifiedTick;
   final Function(String)? onShare;
-  final Function(String)? onLike;
-  final Function(String)? onComment;
-  final Function()? onClickMoreBtn;
-  final Function()? onFollow;
+  final Function(bool, String)? onLike;
+  final Function(String, String)? onComment;
+  final Function(String)? onClickMoreBtn;
+  final Function(bool, String)? onFollow;
 
   const ScreenOptions({
     Key? key,
@@ -40,7 +40,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
     setState(() {
       widget.item.isLiked = !widget.item.isLiked;
       if (widget.onLike != null) {
-        widget.onLike!(widget.item.url);
+        widget.onLike!(widget.item.isLiked, widget.item.id!);
       }
     });
   }
@@ -49,7 +49,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
     setState(() {
       widget.item.isFollowed = !widget.item.isFollowed;
       if (widget.onFollow != null) {
-        widget.onFollow!();
+        widget.onFollow!(widget.item.isFollowed, widget.item.id!);
       }
     });
   }
@@ -146,7 +146,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                         showModalBottomSheet(
                           barrierColor: Colors.transparent,
                           context: context,
-                          builder: (ctx) => CommentBottomSheet(commentList: widget.item.commentList ?? [], onComment: widget.onComment)
+                          builder: (ctx) => CommentBottomSheet(commentList: widget.item.commentList ?? [], onComment: widget.onComment, item: widget.item,)
                         );
                       }
                     },
@@ -168,7 +168,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                   if (widget.onClickMoreBtn != null)
                     IconButton(
                       icon: const Icon(Icons.more_vert),
-                      onPressed: widget.onClickMoreBtn!,
+                      onPressed: widget.onClickMoreBtn!(widget.item.id!)!,
                       color: Colors.white,
                     ),
                 ],

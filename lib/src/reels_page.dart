@@ -11,10 +11,10 @@ class ReelsPage extends StatefulWidget {
   final ReelModel item;
   final bool showVerifiedTick;
   final Function(String)? onShare;
-  final Function(String)? onLike;
-  final Function(String)? onComment;
-  final Function()? onClickMoreBtn;
-  final Function()? onFollow;
+  final Function(bool, String)? onLike;
+  final Function(String, String)? onComment;
+  final Function(String)? onClickMoreBtn;
+  final Function(bool, String)? onFollow;
   final SwiperController swiperController;
   final bool showProgressIndicator;
   const ReelsPage({
@@ -80,9 +80,6 @@ class _ReelsPageState extends State<ReelsPage> {
   }
 
   Widget getVideoView() {
-    if(widget.item.s==null){
-      return Stack();
-    }
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -99,7 +96,7 @@ class _ReelsPageState extends State<ReelsPage> {
                         _liked = true;
                         if (widget.onLike != null) {
                           widget.item.isLiked!=widget.item.isLiked;
-                          widget.onLike!(widget.item.url);
+                          widget.onLike!(widget.item.isLiked,widget.item.id!);
 
                         }
                         setState(() {});

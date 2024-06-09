@@ -4,8 +4,9 @@ import 'package:spacity_wheels_viewer/src/components/comment_item.dart';
 
 class CommentBottomSheet extends StatefulWidget {
   final List<ReelCommentModel> commentList;
-  final Function(String)? onComment;
-  const CommentBottomSheet({Key? key, required this.commentList,this.onComment})
+  final Function(String, String)? onComment;
+  final ReelModel item;
+  const CommentBottomSheet({Key? key, required this.commentList,this.onComment, required this.item})
       : super(key: key);
 
   @override
@@ -65,7 +66,7 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                 suffixIcon: InkWell(onTap: () {
                   if(widget.onComment!=null){
                     String comment = commentController.text;
-                    widget.onComment!(comment);
+                    widget.onComment!(comment, widget.item.id!);
                   }
                   Navigator.pop(context);
                 }, child: const Icon(Icons.send)),
