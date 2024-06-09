@@ -77,7 +77,8 @@ class _ReelsViewerState extends State<ReelsViewer> {
     this.reelsList=widget.reelsList;
     _streamSubscription = widget.reelsStream.listen((List<ReelModel> reels) {
       setState(() {
-        this.reelsList.addAll( reels);
+          var existingIds = Set<String>.from(this.reelsList.map((reel) => reel.id));
+          this.reelsList.addAll(reels.where((reel) => !existingIds.contains(reel.id)));
       });
     });
   }
