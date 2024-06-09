@@ -39,6 +39,14 @@ class _ScreenOptionsState extends State<ScreenOptions> {
   void toggleLike() {
     setState(() {
       widget.item.isLiked = !widget.item.isLiked;
+      if (widget.item.isLiked) {
+        widget.item.likeCount += 1;
+      } else {
+        if(widget.item.likeCount!=0){
+
+          widget.item.likeCount -= 1;
+        }
+      }
       if (widget.onLike != null) {
         widget.onLike!(widget.item.isLiked, widget.item.id!);
       }
@@ -156,7 +164,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                   const SizedBox(height: 20),
                   if (widget.onShare != null)
                     InkWell(
-                      onTap: () => widget.onShare!(widget.item.url),
+                      onTap: () => widget.onShare!(widget.item.id!),
                       child: Transform(
                         transform: Matrix4.rotationZ(5.8),
                         child: const Icon(

@@ -5,7 +5,7 @@ class ReelModel {
   final String url;
   bool isLiked;
   bool isFollowed;
-  final int likeCount;
+  int likeCount;
   final bool? showFollowButton;
   final bool? s;
   final String userName;

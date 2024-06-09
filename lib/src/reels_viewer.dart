@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:spacity_wheels_viewer/src/models/reel_model.dart';
@@ -40,10 +42,13 @@ class ReelsViewer extends StatefulWidget {
 
   /// function invoke when user click on back btn
   final Function()? onClickBackArrow;
+  final Stream<List<ReelModel>> reelsStream;
+
 
   const ReelsViewer({
     Key? key,
     required this.reelsList,
+    required this.reelsStream,
     this.showVerifiedTick = true,
     this.onClickMoreBtn,
     this.onComment,
@@ -63,7 +68,19 @@ class ReelsViewer extends StatefulWidget {
 
 class _ReelsViewerState extends State<ReelsViewer> {
   SwiperController controller = SwiperController();
+    StreamSubscription<List<ReelModel>>? _streamSubscription;
+  List<ReelModel> reelsList = [];
 
+  @override
+  void initState() {
+    super.initState();
+    this.reelsList=widget.reelsList;
+    _streamSubscription = widget.reelsStream.listen((List<ReelModel> reels) {
+      setState(() {
+        this.reelsList.addAll( reels);
+      });
+    });
+  }
   @override
   void dispose() {
     controller.dispose();
@@ -80,7 +97,7 @@ class _ReelsViewerState extends State<ReelsViewer> {
             Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return ReelsPage(
-                  item: widget.reelsList[index],
+                  item: this.reelsList[index],
                   onClickMoreBtn: widget.onClickMoreBtn,
                   onComment: widget.onComment,
                   onFollow: widget.onFollow,

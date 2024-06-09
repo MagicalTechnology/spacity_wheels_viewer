@@ -65,6 +65,17 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                     borderSide: BorderSide(color: Colors.white)),
                 suffixIcon: InkWell(onTap: () {
                   if(widget.onComment!=null){
+                  ReelCommentModel newComment = ReelCommentModel(
+                    comment: commentController.text,
+                    userProfilePic: "default_profile_pic_url", // Update with actual user profile pic URL
+                    userName: "Current User", // Update with actual user name
+                    commentTime: DateTime.now(),
+                  );
+                  // Add the new comment to the comment list
+                  setState(() {
+                    widget.commentList.add(newComment);
+                    commentController.clear(); // Clear the text field after sending the comment
+                  });
                     String comment = commentController.text;
                     widget.onComment!(comment, widget.item.id!);
                   }

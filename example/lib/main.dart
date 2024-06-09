@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -31,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final StreamController<List<ReelModel>> reelsStream =
+      StreamController<List<ReelModel>>();
   List<ReelModel> reelsList = [
     ReelModel(
         'https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4',
@@ -95,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ReelsViewer(
       reelsList: reelsList,
+      reelsStream: reelsStream.stream,
       appbarTitle: 'Spacity Wheels',
       onShare: (url) {
         log('Shared reel url ==> $url');
@@ -116,6 +120,36 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       onIndexChanged: (index){
         log('======> Current Index ======> $index <========');
+        if(index==reelsList.length-1){
+          reelsStream.add([
+            ReelModel(
+              'https://assets.mixkit.co/videos/preview/mixkit-father-and-his-little-daughter-eating-marshmallows-in-nature-39765-large.mp4',
+              'Rahul',
+              true,
+              true,
+              true,
+              id: 'idjwoe',
+              showFollowButton: false,
+              musicName: 'In the name of Love',
+              reelDescription: "Life is better when you're laughing.",
+              profileUrl:
+              'https://opt.toiimg.com/recuperator/img/toi/m-69257289/69257289.jpg',
+            ),
+            ReelModel(
+              'https://assets.mixkit.co/videos/preview/mixkit-father-and-his-little-daughter-eating-marshmallows-in-nature-39765-large.mp4',
+              'Rahulbibi',
+              true,
+              true,
+              true,
+              id: 'idjwoe',
+              showFollowButton: false,
+              musicName: 'In the name of Love',
+              reelDescription: "Life is better when you're laughing.",
+              profileUrl:
+              'https://opt.toiimg.com/recuperator/img/toi/m-69257289/69257289.jpg',
+            ),
+          ]);
+        }
       },
       showProgressIndicator: true,
       showVerifiedTick: true,
