@@ -37,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Darshan Patil',
         true,
         true,
+        true,
         likeCount: 2000,
         musicName: 'In the name of Love',
         reelDescription: "Life is better when you're laughing.",
@@ -70,6 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
       'Rahul',
       true,
       true,
+      true,
+      showFollowButton: false,
       musicName: 'In the name of Love',
       reelDescription: "Life is better when you're laughing.",
       profileUrl:
@@ -80,6 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
       'Rahul',
       true,
       true,
+      true,
+      showFollowButton: false,
     ),
   ];
 
