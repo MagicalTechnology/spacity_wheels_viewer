@@ -11,7 +11,7 @@ class ScreenOptions extends StatefulWidget {
   final Function(String)? onShare;
   final Function(bool, String)? onLike;
   final Function(String, String)? onComment;
-  final Function(String)? onClickMoreBtn;
+  final Function()? onClickMoreBtn;
   final Function(bool, String)? onFollow;
 
   const ScreenOptions({
@@ -33,7 +33,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
 
   @override
   void initState() {
-    super.initState(); // Assuming ReelModel has isFollowed field
+    super.initState();
   }
 
   void toggleLike() {
@@ -55,7 +55,8 @@ class _ScreenOptionsState extends State<ScreenOptions> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {// Assuming ReelModel has isFollowed field
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -168,7 +169,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                   if (widget.onClickMoreBtn != null)
                     IconButton(
                       icon: const Icon(Icons.more_vert),
-                      onPressed: widget.onClickMoreBtn!(widget.item.id!)!,
+                      onPressed: () => widget.onClickMoreBtn!(),
                       color: Colors.white,
                     ),
                 ],

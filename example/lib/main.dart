@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         true,
         true,
         true,
+        id: 'd23d',
         likeCount: 2000,
         musicName: 'In the name of Love',
         reelDescription: "Life is better when you're laughing.",
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
       true,
       true,
+      id: 'idjwoe',
       showFollowButton: false,
       musicName: 'In the name of Love',
       reelDescription: "Life is better when you're laughing.",
@@ -84,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
       true,
       true,
       true,
+      id: 'doijqdiw',
       showFollowButton: true,
     ),
   ];
@@ -103,9 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
         log('======> Clicked on follow <======');
       },
       onComment: (comment, id) {
-        log('Comment on reel ==> $comment');
+        log('Comment on reel ==> $comment $id');
       },
-      onClickMoreBtn: (id) {
+      onClickMoreBtn: () {
         log('======> Clicked on more option <======');
       },
       onClickBackArrow: () {
