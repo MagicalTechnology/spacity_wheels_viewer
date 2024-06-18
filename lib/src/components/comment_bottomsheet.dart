@@ -6,7 +6,9 @@ class CommentBottomSheet extends StatefulWidget {
   final List<ReelCommentModel> commentList;
   final Function(String, String)? onComment;
   final ReelModel item;
-  const CommentBottomSheet({Key? key, required this.commentList,this.onComment, required this.item})
+  final String profilePicUrl;
+  final String userName;
+  const CommentBottomSheet({Key? key, required this.commentList,this.onComment, required this.item, required this.profilePicUrl, required this.userName})
       : super(key: key);
 
   @override
@@ -67,17 +69,18 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                   if(widget.onComment!=null){
                   ReelCommentModel newComment = ReelCommentModel(
                     comment: commentController.text,
-                    userProfilePic: "default_profile_pic_url", // Update with actual user profile pic URL
-                    userName: "Current User", // Update with actual user name
+                    userProfilePic: widget.profilePicUrl, // Update with actual user profile pic URL
+                    userName: widget.userName, // Update with actual user name
                     commentTime: DateTime.now(),
                   );
                   // Add the new comment to the comment list
-                  setState(() {
-                    widget.commentList.add(newComment);
-                    commentController.clear(); // Clear the text field after sending the comment
-                  });
+
                     String comment = commentController.text;
                     widget.onComment!(comment, widget.item.id!);
+                    setState(() {
+                      widget.commentList.add(newComment);
+                      commentController.clear(); // Clear the text field after sending the comment
+                    });
                   }
                   Navigator.pop(context);
                 }, child: const Icon(Icons.send)),

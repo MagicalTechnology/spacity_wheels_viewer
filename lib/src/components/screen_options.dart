@@ -13,6 +13,8 @@ class ScreenOptions extends StatefulWidget {
   final Function(String, String)? onComment;
   final Function()? onClickMoreBtn;
   final Function(bool, String)? onFollow;
+  final String profilePicUrl;
+  final String userName;
 
   const ScreenOptions({
     Key? key,
@@ -23,6 +25,8 @@ class ScreenOptions extends StatefulWidget {
     this.onFollow,
     this.onLike,
     this.onShare,
+    required this.profilePicUrl,
+    required this.userName
   }) : super(key: key);
 
   @override
@@ -155,7 +159,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                         showModalBottomSheet(
                           barrierColor: Colors.transparent,
                           context: context,
-                          builder: (ctx) => CommentBottomSheet(commentList: widget.item.commentList ?? [], onComment: widget.onComment, item: widget.item,)
+                          builder: (ctx) => CommentBottomSheet(commentList: widget.item.commentList ?? [], onComment: widget.onComment, item: widget.item, profilePicUrl: widget.profilePicUrl, userName: widget.userName)
                         );
                       }
                     },

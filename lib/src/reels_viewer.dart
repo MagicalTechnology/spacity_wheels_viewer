@@ -43,6 +43,8 @@ class ReelsViewer extends StatefulWidget {
   /// function invoke when user click on back btn
   final Function()? onClickBackArrow;
   final Stream<List<ReelModel>> reelsStream;
+  final String profilePicUrl;
+  final String userName;
 
 
   const ReelsViewer({
@@ -59,7 +61,7 @@ class ReelsViewer extends StatefulWidget {
     this.showAppbar = true,
     this.onClickBackArrow,
     this.onIndexChanged,
-    this.showProgressIndicator =true,
+    this.showProgressIndicator =true, required this.profilePicUrl, required this.userName,
   }) : super(key: key);
 
   @override
@@ -107,6 +109,8 @@ class _ReelsViewerState extends State<ReelsViewer> {
                   showVerifiedTick: widget.showVerifiedTick,
                   swiperController: controller,
                   showProgressIndicator: widget.showProgressIndicator,
+                  profilePicUrl: widget.profilePicUrl,
+                  userName: widget.userName
                 );
               },
               controller: controller,
@@ -121,7 +125,7 @@ class _ReelsViewerState extends State<ReelsViewer> {
                   children: [
                     IconButton(
                         onPressed: widget.onClickBackArrow ??
-                            () => Navigator.pop(context),
+                            () => { widget.onClickBackArrow!(),Navigator.pop(context)},
                         icon: const Icon(Icons.arrow_back,color: Colors.white,)
                     ),
                     const SizedBox(),

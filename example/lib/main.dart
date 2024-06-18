@@ -99,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return ReelsViewer(
       reelsList: reelsList,
       reelsStream: reelsStream.stream,
+      userName: "blabla",
+      profilePicUrl: "lelington",
       appbarTitle: 'Spacity Wheels',
       onShare: (url) {
         log('Shared reel url ==> $url');

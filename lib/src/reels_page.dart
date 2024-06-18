@@ -17,6 +17,9 @@ class ReelsPage extends StatefulWidget {
   final Function(bool, String)? onFollow;
   final SwiperController swiperController;
   final bool showProgressIndicator;
+
+  final String profilePicUrl;
+  final String userName;
   const ReelsPage({
     Key? key,
     required this.item,
@@ -27,7 +30,7 @@ class ReelsPage extends StatefulWidget {
     this.onLike,
     this.onShare,
     this.showProgressIndicator = true,
-    required this.swiperController,
+    required this.swiperController, required this.profilePicUrl, required this.userName,
   }) : super(key: key);
 
   @override
@@ -48,13 +51,15 @@ class _ReelsPageState extends State<ReelsPage> {
   }
 
   Future initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(widget.item.url);
+    _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(widget.item.url));
+
     await Future.wait([_videoPlayerController.initialize()]);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       autoPlay: true,
       showControls: false,
       looping: false,
+
     );
     setState(() {});
     _videoPlayerController.addListener(() {
@@ -91,12 +96,27 @@ class _ReelsPageState extends State<ReelsPage> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: GestureDetector(
+                    onLongPressStart: (_) {
+                      _videoPlayerController.pause();
+                    },
+                    onLongPressEnd: (_) {
+                      _videoPlayerController.play();
+                    },
                     onDoubleTap: () {
                       if (!widget.item.isLiked) {
                         _liked = true;
                         if (widget.onLike != null) {
-                          widget.item.isLiked!=widget.item.isLiked;
-                          widget.onLike!(widget.item.isLiked,widget.item.id!);
+                          setState(() {
+
+                              if(!widget.item.isLiked) {
+                                widget.item.likeCount += 1;
+
+
+                                widget.item.isLiked = true;
+                                widget.onLike!(widget.item.isLiked, widget.item
+                                    .id!);
+                              }
+                          });
 
                         }
                         setState(() {});
@@ -123,9 +143,10 @@ class _ReelsPageState extends State<ReelsPage> {
           Positioned(
             bottom: 0,
             width: MediaQuery.of(context).size.width,
+            height: 13,
             child: VideoProgressIndicator(
               _videoPlayerController,
-              allowScrubbing: false,
+              allowScrubbing: true,
               colors: const VideoProgressColors(
                 backgroundColor: Colors.blueGrey,
                 bufferedColor: Colors.blueGrey,
@@ -140,6 +161,8 @@ class _ReelsPageState extends State<ReelsPage> {
           onLike: widget.onLike,
           onShare: widget.onShare,
           showVerifiedTick: widget.showVerifiedTick,
+          profilePicUrl: widget.profilePicUrl,
+          userName: widget.userName,
           item: widget.item,
         )
       ],
