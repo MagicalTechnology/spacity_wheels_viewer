@@ -11,7 +11,7 @@ class ScreenOptions extends StatefulWidget {
   final Function(String)? onShare;
   final Function(bool, String)? onLike;
   final Function(String, String)? onComment;
-  final Function()? onClickMoreBtn;
+  final Function(String)? onClickMoreBtn;
   final Function(bool, String)? onFollow;
   final String profilePicUrl;
   final String userName;
@@ -181,7 +181,7 @@ class _ScreenOptionsState extends State<ScreenOptions> {
                   if (widget.onClickMoreBtn != null)
                     IconButton(
                       icon: const Icon(Icons.more_vert),
-                      onPressed: () => widget.onClickMoreBtn!(),
+                      onPressed: () => widget.onClickMoreBtn!(widget.item.id!),
                       color: Colors.white,
                     ),
                 ],

@@ -13,7 +13,7 @@ class ReelsPage extends StatefulWidget {
   final Function(String)? onShare;
   final Function(bool, String)? onLike;
   final Function(String, String)? onComment;
-  final Function()? onClickMoreBtn;
+  final Function(String)? onClickMoreBtn;
   final Function(bool, String)? onFollow;
   final SwiperController swiperController;
   final bool showProgressIndicator;
@@ -132,7 +132,7 @@ class _ReelsPageState extends State<ReelsPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   CircularProgressIndicator(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                 ],
               ),
         if (_liked)

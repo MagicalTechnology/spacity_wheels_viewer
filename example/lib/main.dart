@@ -114,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
       onComment: (comment, id) {
         log('Comment on reel ==> $comment $id');
       },
-      onClickMoreBtn: () {
-        log('======> Clicked on more option <======');
+      onClickMoreBtn: (id) {
+        log('======> Clicked on more option on $id <======');
       },
       onClickBackArrow: () {
         log('======> Clicked on back arrow <======');
